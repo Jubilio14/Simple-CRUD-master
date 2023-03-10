@@ -1,0 +1,38 @@
+﻿@model MemberModel;
+@{
+    ViewData["Title"] = "Edit";
+}
+@if (TempData["error_message"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["error_message"]
+    </div>
+}
+@if (TempData["success_message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["success_message"]
+    </div>
+}
+<form method="post" action="/Member/Update">
+     @Html.AntiForgeryToken()   
+     <input type="hidden" asp-for="Id" />
+     <div class="form-group">
+        <label>Nama</label>
+        <input type="text" class="form-control" asp-for="Name"/>
+        <span asp-validation-for="Name" class="text-danger"></span>
+     </div>
+     <div class="form-group">
+         <label>Deskripsi</label>
+        <input type="text" class="form-control" asp-for="Description"/>
+        <span asp-validation-for="Description" class="text-danger"></span>
+     </div>
+     <div class="form-group">
+        <a class="btn btn-danger" href="/member/index">Kembali</a>
+        <button class="btn btn-primary">Simpan</button>
+     </div>
+</form>
+@section Scripts{
+    <script src="../../lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="../../lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
